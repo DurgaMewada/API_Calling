@@ -1,9 +1,15 @@
-# api_calling
+##  What is API?
 
-A new Flutter project.
+## **API (Application Programming Interface):**
 
-## Getting Started
+API stands for Application Programming Interface. It is a set of rules and protocols that allows different software applications to communicate with each other. APIs enable developers to use predefined methods to interact with other software or services without needing to understand their internal workings.
 
+# 9.2 Call Pixabay API & Represent in UI.
+<div> 
+   <img src = "https://github.com/user-attachments/assets/aea4c362-e545-4b7c-b1ed-39409f7d8557"  height=35% width=22%  />
+   <img src = "https://github.com/user-attachments/assets/3872739f-35c1-4fcb-9f99-1d180915db5f"  height=35% width=22%  />
+  <video height="450" src="https://github.com/user-attachments/assets/b1f8a77e-3d22-4801-a6c2-7fca322a03a6" />
+</div>
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
