@@ -15,91 +15,89 @@ class RecipeHomePage extends StatelessWidget {
         Provider.of<RecipeProvider>(context, listen: false);
     RecipeProvider recipeProviderTrue =
         Provider.of<RecipeProvider>(context, listen: true);
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        scrolledUnderElevation: 0.5,
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          scrolledUnderElevation: 0.5,
-          backgroundColor: Colors.white,
-          centerTitle: true,
-          title: const Text(
-            'Recipes',
-          ),
-          leading: const Icon(
-            Icons.menu,
-          ),
+        centerTitle: true,
+        title: const Text(
+          'Recipes',
         ),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(13.0),
-              child: Container(
-                height: 170,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(13),
-                    image: const DecorationImage(
-                      image: AssetImage('assets/Images/Daal.jpeg'),
-                      fit: BoxFit.cover,
+        leading: const Icon(
+          Icons.menu,
+        ),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(13.0),
+            child: Container(
+              height: 170,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(13),
+                  image: const DecorationImage(
+                    image: AssetImage('assets/Images/Daal.jpeg'),
+                    fit: BoxFit.cover,
 
-                    ),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Colors.grey,
-                          offset: Offset(0, 3),
-                          // spreadRadius: 1,
-                          blurRadius: 2)
-                    ]),
-              ),
-            ),
-            const SizedBox(
-              width: 300,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'All Recipes',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(fontSize: 20),
                   ),
-                  Icon(
-                    Icons.arrow_drop_down,
-                  )
-                ],
-              ),
+                  boxShadow: const [
+                    BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(0, 3),
+                        // spreadRadius: 1,
+                        blurRadius: 2)
+                  ]),
             ),
-            Expanded(
-              child: FutureBuilder(
-                future: Provider.of<RecipeProvider>(context, listen: false)
-                    .fromMap(),
-                builder: (context, snapShot) {
-                  if (snapShot.hasData) {
-                    RecipeModal? re = snapShot.data;
-                    return Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: ListView.builder(
-                        physics: BouncingScrollPhysics(),
-                        itemCount: re!.recipes.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                              onTap: () {
-                                selectedIndex = index;
-                                Navigator.of(context).pushNamed('/detail');
-                              },
-                              child: buildRow(re, index));
-                        },
-                      ),
-                    );
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                },
-              ),
+          ),
+          const SizedBox(
+            width: 300,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'All Recipes',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 20),
+                ),
+                Icon(
+                  Icons.arrow_drop_down,
+                )
+              ],
             ),
-          ],
-        ),
+          ),
+          Expanded(
+            child: FutureBuilder(
+              future: Provider.of<RecipeProvider>(context, listen: false)
+                  .fromMap(),
+              builder: (context, snapShot) {
+                if (snapShot.hasData) {
+                  RecipeModal? re = snapShot.data;
+                  return Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: ListView.builder(
+                      physics: BouncingScrollPhysics(),
+                      itemCount: re!.recipes.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                            onTap: () {
+                              selectedIndex = index;
+                              Navigator.of(context).pushNamed('/detail');
+                            },
+                            child: buildRow(re, index));
+                      },
+                    ),
+                  );
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
